@@ -13,6 +13,7 @@ ft_read:
                 sub		rsp, 8
                 call	__errno_location  wrt ..plt
                 add		rsp, 8
+				neg		r8
                 mov		[rax], r8
                 mov		rax, -1
 ft_ret:
