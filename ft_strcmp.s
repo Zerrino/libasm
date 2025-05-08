@@ -6,19 +6,22 @@ section .text
 
 ; rdi rsi
 ft_strcmp:
-
+		push	rbp
+		mov		rbp, rsp
+		xor		eax, eax
 		test	rdi, rdi
 		je ft_ret
 		test	rsi, rsi
 		je ft_ret
 		mov		rcx, -1
-		push	rdi
+		mov		r8, rdi
 		repne	scasb
-		pop		rdi
+		mov		rdi, r8
 		not		rcx
 		repe	cmpsb
 		movzx	eax, byte [rdi - 1]
-		movzx	ebx, byte [rsi - 1]
-		sub		eax, ebx
+		movzx	ecx, byte [rsi - 1]
+		sub		eax, ecx
 ft_ret:
+		pop		rbp
 	ret

@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 10:00:10 by alexafer          #+#    #+#             */
-/*   Updated: 2025/05/05 16:50:04 by alexafer         ###   ########.fr       */
+/*   Updated: 2025/05/07 19:42:19 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,7 @@ int		ft_atoi_base(char *, char *);
 int		ft_list_size(t_list *);
 void	ft_list_push_front(t_list **, void *);
 void	ft_list_sort(t_list **, int (*cmp)());
-t_list	*ft_create_elem(void *);
-
+t_list	*ft_create_elem(void *data);
 
 
 #endif

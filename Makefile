@@ -6,7 +6,7 @@
 #    By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:07:48 by alexafer          #+#    #+#              #
-#    Updated: 2025/05/06 00:22:49 by alexafer         ###   ########.fr        #
+#    Updated: 2025/05/08 01:50:15 by alexafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,26 +17,33 @@ NASM = nasm
 NASMFLAGS = -f elf64
 SRC_DIR = .
 INC_DIR = .
+
+SRCC = ft_create_elem.c
+
 SRCS =  ft_write.s \
 		ft_strlen.s \
 		ft_strcpy.s \
 		ft_strcmp.s \
 		ft_read.s \
-		ft_strdup.s
+		ft_strdup.s \
+		ft_list_push_front.s \
+		ft_list_size.s \
+		ft_list_sort.s
 
 
 MAIN = main.c
 
 BONUS =
 
-OBJS = $(addprefix $(SRC_DIR)/, $(SRCS:.s=.o))
+OBJS := $(addprefix $(SRC_DIR)/, $(SRCS:.s=.o))
+OBJS += $(addprefix $(SRC_DIR)/, $(SRCC:.c=.o))
+
 BONUS_OBJ = $(addprefix $(SRC_DIR)/, $(BONUS:.s=.o))
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
 	@ar -rcs $@ $^
-	make compile
 
 bonus: $(BONUS_OBJ)
 	@ar -rcs $(NAME) $^

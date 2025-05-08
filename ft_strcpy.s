@@ -6,21 +6,24 @@ section .text
 
 ; rdi rsi
 ft_strcpy:
+	push	rbp
+	mov		rbp, rsp
 	mov		rax, rdi
 	test	rdi, rdi
 	jz		ft_ret
 	test	rsi, rsi
 	jz		ft_ret
-	push	rdi
+	mov		r8, rdi
 	mov		rdi, rsi
 	xor		al, al
 	mov		rcx, -1
 	repne	scasb
 	not		rcx
-	pop		rdi
-	push	rdi
+	mov		rdi, r8
+
 	rep		movsb
-	pop		rdi
+	mov		rdi, r8
 	mov		rax, rdi
 ft_ret:
-		ret
+	pop	rbp
+	ret

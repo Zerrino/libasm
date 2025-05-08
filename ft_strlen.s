@@ -5,6 +5,8 @@ section .text
         global  ft_strlen
 
 ft_strlen:
+		push	rbp
+		mov		rbp, rsp
 		xor		al, al
 		test	rdi, rdi
 		je ft_ret
@@ -14,5 +16,6 @@ ft_strlen:
 		sub		rax, rcx
 
 ft_ret:
+		pop		rbp
 		ret
 
