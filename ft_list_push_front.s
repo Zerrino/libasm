@@ -2,7 +2,7 @@ bits 64
 default rel
 
 section .text
-        global	ft_list_push_front
+		global	ft_list_push_front
 		extern  ft_create_elem
 
 

@@ -17,21 +17,52 @@ void free_list(t_list *list)
 }
 
 
+int cmp_str(void *a, void *b)
+{
+    return strcmp((char*)a, (char*)b);
+}
+
+void my_free(void *ptr)
+{
+    (void)ptr;
+}
+
+
 void hey(void)
 {
-    t_list *list = NULL;
+    t_list *lst = NULL;
+    // on construit une liste : "Troisième" -> "Deuxième" -> "Premier"
+    //ft_list_push_front(&lst, "Sixième");
+    //ft_list_push_front(&lst, "Cinqième");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "A");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "A");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "A");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "B");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "C");
+    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "D");
+    ft_list_push_front(&lst, "Z");
 
-    ft_list_push_front(&list, "Troisième");
-    ft_list_push_front(&list, "Deuxième");
-    ft_list_push_front(&list, "Premier");
+    printf("Avant tri (%d éléments) :\n", ft_list_size(lst));
+    for (t_list *n = lst; n; n = n->next)
+        printf(" - %s\n", (char*)n->data);
 
-    printf("Taille de la liste : %d\n", ft_list_size(list));
+    // tri avec ton assembly
+    ft_list_sort(&lst, cmp_str);
 
-    // Affiche les données (en supposant des strings pour l'exemple)
-    for (t_list *node = list; node != NULL; node = node->next)
-        printf(" - %s\n", (char *)node->data);
-
-    free_list(list);
+    printf("\nAprès tri  (%d éléments) :\n", ft_list_size(lst));
+    for (t_list *n = lst; n; n = n->next)
+        printf(" - %s\n", (char*)n->data);
+    ft_list_remove_if(&lst, "Z", cmp_str, my_free);
+    printf("\nSuppression des \"Z\"...  (%d éléments) :\n", ft_list_size(lst));
+    for (t_list *n = lst; n; n = n->next)
+        printf(" - %s\n", (char*)n->data);
+    free_list(lst);
 }
 
 

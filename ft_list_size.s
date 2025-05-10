@@ -16,6 +16,8 @@ loop:
 	mov		rdi, [rdi + 8]
 	test	rdi, rdi
 	jne		loop
+
+
 ft_end:
 	pop		rbp
 	ret

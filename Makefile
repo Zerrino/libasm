@@ -6,7 +6,7 @@
 #    By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/11/23 16:07:48 by alexafer          #+#    #+#              #
-#    Updated: 2025/05/08 01:50:15 by alexafer         ###   ########.fr        #
+#    Updated: 2025/05/10 23:48:35 by alexafer         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,21 +26,24 @@ SRCS =  ft_write.s \
 		ft_strcmp.s \
 		ft_read.s \
 		ft_strdup.s \
-		ft_list_push_front.s \
-		ft_list_size.s \
-		ft_list_sort.s
 
 
 MAIN = main.c
 
-BONUS =
+BONUS = ft_list_push_front.s \
+		ft_list_size.s \
+		ft_list_sort.s \
+		ft_atoi_base.s \
+		ft_list_remove_if.s
 
 OBJS := $(addprefix $(SRC_DIR)/, $(SRCS:.s=.o))
 OBJS += $(addprefix $(SRC_DIR)/, $(SRCC:.c=.o))
 
-BONUS_OBJ = $(addprefix $(SRC_DIR)/, $(BONUS:.s=.o))
 
-all: $(NAME)
+BONUS_OBJ = $(addprefix $(SRC_DIR)/, $(BONUS:.s=.o))
+BONUS_OBJ += $(addprefix $(SRC_DIR)/, $(SRCC:.c=.o))
+
+all: $(NAME) bonus
 
 $(NAME): $(OBJS)
 	@ar -rcs $@ $^

@@ -6,7 +6,7 @@
 /*   By: alexafer <alexafer@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/04/18 10:00:10 by alexafer          #+#    #+#             */
-/*   Updated: 2025/05/07 19:42:19 by alexafer         ###   ########.fr       */
+/*   Updated: 2025/05/10 23:50:11 by alexafer         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@ typedef struct	s_list
 	struct s_list	*next;
 }	t_list;
 
+
 ssize_t	ft_write(int, const void *, size_t);
 ssize_t	ft_read(int, void *, size_t);
 size_t	ft_strlen(const char *);
@@ -36,6 +37,7 @@ int		ft_list_size(t_list *);
 void	ft_list_push_front(t_list **, void *);
 void	ft_list_sort(t_list **, int (*cmp)());
 t_list	*ft_create_elem(void *data);
+void	ft_list_remove_if(t_list **begin_list, void *data_ref, int (*cmp)(), void (*free_fct)(void *));
 
 
 #endif
