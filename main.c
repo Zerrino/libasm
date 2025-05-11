@@ -22,8 +22,16 @@ int cmp_str(void *a, void *b)
     return strcmp((char*)a, (char*)b);
 }
 
+int cmp_str_2(void *a, void *b)
+{
+    printf("function called!\n");
+    printf("rdi : %s, rsi : %s\n", (char *)a, (char *)b);
+    return strcmp((char*)a, (char*)b);
+}
+
 void my_free(void *ptr)
 {
+    printf("function de nottoyage appele pour : %s\n", (char *)ptr);
     (void)ptr;
 }
 
@@ -34,31 +42,18 @@ void hey(void)
     // on construit une liste : "Troisième" -> "Deuxième" -> "Premier"
     //ft_list_push_front(&lst, "Sixième");
     //ft_list_push_front(&lst, "Cinqième");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "A");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "A");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "A");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "B");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "C");
-    ft_list_push_front(&lst, "Z");
-    ft_list_push_front(&lst, "D");
-    ft_list_push_front(&lst, "Z");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
+    ft_list_push_front(&lst, "ZZZ");
 
-    printf("Avant tri (%d éléments) :\n", ft_list_size(lst));
-    for (t_list *n = lst; n; n = n->next)
-        printf(" - %s\n", (char*)n->data);
-
-    // tri avec ton assembly
     ft_list_sort(&lst, cmp_str);
+    printf("(%d éléments) :\n", ft_list_size(lst));
+    ft_list_remove_if(&lst, "ZZZ", cmp_str_2, my_free);
 
-    printf("\nAprès tri  (%d éléments) :\n", ft_list_size(lst));
-    for (t_list *n = lst; n; n = n->next)
-        printf(" - %s\n", (char*)n->data);
-    ft_list_remove_if(&lst, "Z", cmp_str, my_free);
     printf("\nSuppression des \"Z\"...  (%d éléments) :\n", ft_list_size(lst));
     for (t_list *n = lst; n; n = n->next)
         printf(" - %s\n", (char*)n->data);
